@@ -110,5 +110,7 @@ pills automatically.
 
 - The filter is applied server-side via the session → the page reloads once after a click.
 - There is always **exactly one** vehicle active or none (`""` = "All vehicles").
+- The cookie value is only accepted server-side if it is a valid UUID (`VehicleSelectionStorage::sanitize`). Invalid values are ignored and never reach the HTTP cache key or the product filter.
+- The vehicle description (custom field) is rendered with `sw_sanitize`, not `raw`.
 - If the option stored in the session is not (or no longer) part of the currently
   configured groups it is ignored, so the customer never gets stuck in an empty filter.

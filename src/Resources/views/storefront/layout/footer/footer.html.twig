@@ -15,7 +15,7 @@
         {% if vswAllowed %}
             {% block component_vehicle_switcher_description_footer %}
                 <div class="vehicle-switcher__description vehicle-switcher__description--footer">
-                    {{ vswDesc.get('html')|raw }}
+                    {{ vswDesc.get('html')|sw_sanitize }}
                 </div>
             {% endblock %}
         {% endif %}

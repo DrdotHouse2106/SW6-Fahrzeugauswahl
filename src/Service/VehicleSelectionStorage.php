@@ -2,6 +2,8 @@
 
 namespace Ulber\FahrzeugSchnellauswahl\Service;
 
+use Shopware\Core\Framework\Uuid\Uuid;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -10,6 +12,11 @@ use Symfony\Component\HttpFoundation\RequestStack;
  * Bewusst ein Cookie (nicht die Session): Der Wert muss schon beim Aufbau des
  * HTTP-Cache-Keys verfügbar sein – die Session ist zu dem Zeitpunkt nicht
  * zuverlässig gestartet. Gesetzt wird das Cookie clientseitig im Storefront-JS.
+ *
+ * Sicherheit: Der Cookie-Wert ist clientseitig frei setzbar. Er wird deshalb
+ * nur akzeptiert, wenn er eine gültige UUID ist. Sonst würde jeder beliebige
+ * Wert eine eigene HTTP-Cache-Variante erzeugen (Cache-Flooding) und als
+ * ungültige ID im DAL-Filter zu einer Exception statt zur Produktliste führen.
  */
 class VehicleSelectionStorage
 {
@@ -27,8 +34,29 @@ class VehicleSelectionStorage
             return null;
         }
 
-        $value = $request->cookies->get(self::COOKIE_NAME);
+        return self::fromRequest($request);
+    }
 
-        return \is_string($value) && $value !== '' ? $value : null;
+    /**
+     * Liest und validiert den Cookie-Wert eines beliebigen Requests.
+     * Liefert die OptionId in Kleinbuchstaben oder null, wenn kein gültiger Wert gesetzt ist.
+     */
+    public static function fromRequest(Request $request): ?string
+    {
+        return self::sanitize($request->cookies->get(self::COOKIE_NAME));
+    }
+
+    /**
+     * Akzeptiert ausschließlich gültige UUIDs (32 Hex-Zeichen, Shopware-Format).
+     */
+    public static function sanitize(mixed $value): ?string
+    {
+        if (!\is_string($value) || $value === '') {
+            return null;
+        }
+
+        $value = strtolower(trim($value));
+
+        return Uuid::isValid($value) ? $value : null;
     }
 }

@@ -34,18 +34,19 @@ class CacheKeySubscriber implements EventSubscriberInterface
 
     public function onHttpCacheKey(HttpCacheKeyEvent $event): void
     {
-        $optionId = $event->request->cookies->get(VehicleSelectionStorage::COOKIE_NAME);
+        // Nur validierte UUIDs in den Cache-Key aufnehmen (siehe VehicleSelectionStorage)
+        $optionId = VehicleSelectionStorage::fromRequest($event->request);
 
-        if (\is_string($optionId) && $optionId !== '') {
+        if ($optionId !== null) {
             $event->add('vehicle-switcher', $optionId);
         }
     }
 
     public function onRouteCacheKey(StoreApiRouteCacheKeyEvent $event): void
     {
-        $optionId = $event->getRequest()->cookies->get(VehicleSelectionStorage::COOKIE_NAME);
+        $optionId = VehicleSelectionStorage::fromRequest($event->getRequest());
 
-        if (\is_string($optionId) && $optionId !== '') {
+        if ($optionId !== null) {
             $event->addPart('vehicle-switcher-' . $optionId);
         }
     }

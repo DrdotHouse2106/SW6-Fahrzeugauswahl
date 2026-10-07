@@ -103,7 +103,7 @@
             {% if activeDescription is not empty and vswDescAllowed %}
                 <div class="vehicle-switcher__description">
                     {% block component_vehicle_switcher_description_inner %}
-                        {{ activeDescription|raw }}
+                        {{ activeDescription|sw_sanitize }}
                     {% endblock %}
                 </div>
             {% endif %}

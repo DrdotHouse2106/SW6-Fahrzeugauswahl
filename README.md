@@ -124,6 +124,8 @@ automatisch als Kacheln.
 
 - Der Filter greift serverseitig über das Cookie → nach einem Klick lädt die Seite einmal neu.
 - Es ist immer **genau ein** Fahrzeug aktiv oder keins (kein Cookie = „Alle Fahrzeuge").
+- Der Cookie-Wert wird serverseitig nur akzeptiert, wenn er eine gültige UUID ist (`VehicleSelectionStorage::sanitize`). Ungültige Werte werden ignoriert und gelangen weder in den HTTP-Cache-Key noch in den Produktfilter.
+- Die Fahrzeug-Beschreibung (Zusatzfeld) wird mit `sw_sanitize` ausgegeben, nicht mit `raw`.
 - Ist die im Cookie gespeicherte Option in den aktuell konfigurierten Gruppen nicht
   (mehr) vorhanden, wird sie ignoriert, damit der Kunde nicht in einem leeren Filter feststeckt.
 - Das kompilierte Storefront-JS (`dist/`) ist **im Plugin enthalten** – auf Produktivsystemen
