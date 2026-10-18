@@ -132,3 +132,9 @@ automatisch als Kacheln.
   reicht `bin/console theme:compile`, kein `bin/build-storefront.sh` / Node nötig.
 - Damit die Kachel-Leiste unter einem **eigenen Theme** erscheint, muss dessen `theme.json`
   in `style` **und** `script` den Eintrag `@Plugins` enthalten.
+
+## Unterstützen
+
+Wenn dir dieses Projekt weiterhilft, freue ich mich über eine kleine Spende:
+
+[![Spenden via PayPal](https://img.shields.io/badge/Spenden-PayPal-0070ba?logo=paypal&logoColor=white)](https://paypal.me/DrdotHouse)
