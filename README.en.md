@@ -1,5 +1,7 @@
 # Vehicle Quick Switcher (Horizontal Vehicle Switcher)
 
+[![Buy me a coffee](https://img.shields.io/badge/☕_Buy_me_a_coffee-PayPal-0070ba?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/DrdotHouse)
+
 > Die deutsche Fassung ist das Original: [README.md](README.md)
 
 Lightweight Shopware 6.6+ plugin for a global, horizontal vehicle quick switcher in
