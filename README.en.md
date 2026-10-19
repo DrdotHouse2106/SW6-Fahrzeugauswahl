@@ -116,3 +116,26 @@ pills automatically.
 - The vehicle description (custom field) is rendered with `sw_sanitize`, not `raw`.
 - If the option stored in the session is not (or no longer) part of the currently
   configured groups it is ignored, so the customer never gets stuck in an empty filter.
+
+## ☕ Support
+
+If this project helps you, I'd be happy about a coffee – voluntary, no support obligation,
+just a nice gesture:
+
+[![Buy me a coffee](https://img.shields.io/badge/☕_Buy_me_a_coffee-PayPal-0070ba?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/DrdotHouse)
+
+### For companies: support further development
+
+You use this project in your business and would like to support its further development?
+Happy to do so **with an invoice** – one-off or **monthly**. On request I'll list you here under
+"Supporters" with company name and link.
+
+Please note: I'm not a professional developer – this project is a hobby. Your contribution
+therefore isn't a support contract; I can't offer support, response times or warranty. Feature requests
+and suggestions for improvement are always welcome, though.
+
+Contact: [info@francetec.de](mailto:info@francetec.de)
+
+#### Supporters
+
+*None yet – I'd be glad to see your name here.*
