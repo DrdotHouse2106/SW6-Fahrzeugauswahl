@@ -157,6 +157,14 @@ class VehicleSwitcherConfig
         return (bool) $this->systemConfigService->get(self::PREFIX . 'categoryHeading', $salesChannelId);
     }
 
+    /**
+     * Menü: Kategorien ohne Produkte fürs gewählte Fahrzeug ausblenden.
+     */
+    public function hideEmptyCategories(?string $salesChannelId): bool
+    {
+        return (bool) $this->systemConfigService->get(self::PREFIX . 'hideEmptyCategories', $salesChannelId);
+    }
+
     public function getCategoryHeadingJoiner(?string $salesChannelId): string
     {
         return $this->trimToNull($this->systemConfigService->get(self::PREFIX . 'categoryHeadingJoiner', $salesChannelId)) ?? 'für';

@@ -38,6 +38,18 @@
             <tag name="kernel.event_subscriber"/>
         </service>
 
+        <service id="Ulber\FahrzeugSchnellauswahl\Service\CategoryVehicleFilter">
+            <argument type="service" id="sales_channel.product.repository"/>
+            <argument type="service" id="Shopware\Core\Content\ProductStream\Service\ProductStreamBuilder"/>
+        </service>
+
+        <service id="Ulber\FahrzeugSchnellauswahl\Subscriber\NavigationTreeSubscriber">
+            <argument type="service" id="Ulber\FahrzeugSchnellauswahl\Service\VehicleSwitcherConfig"/>
+            <argument type="service" id="Ulber\FahrzeugSchnellauswahl\Service\VehicleSelectionStorage"/>
+            <argument type="service" id="Ulber\FahrzeugSchnellauswahl\Service\CategoryVehicleFilter"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
         <service id="Ulber\FahrzeugSchnellauswahl\Subscriber\ProductListingSubscriber">
             <argument type="service" id="Ulber\FahrzeugSchnellauswahl\Service\VehicleSwitcherConfig"/>
             <argument type="service" id="Ulber\FahrzeugSchnellauswahl\Service\VehicleSelectionStorage"/>

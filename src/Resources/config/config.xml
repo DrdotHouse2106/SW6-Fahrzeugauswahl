@@ -172,6 +172,13 @@
             <helpText>Wort zwischen Kategorie und Fahrzeug. Leer = „für“.</helpText>
         </input-field>
 
+        <input-field type="bool">
+            <name>hideEmptyCategories</name>
+            <label>Leere Kategorien im Menü ausblenden</label>
+            <helpText>Bei gewähltem Fahrzeug zeigt das Menü (Desktop und mobil) nur Kategorien, die für dieses Fahrzeug Produkte haben. Inhaltsseiten ohne Produkte, Links und Ordner bleiben stehen.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
         <input-field type="text">
             <name>allOptionLabel</name>
             <label>Beschriftung der „Alle“-Kachel</label>

@@ -1,3 +1,6 @@
+# 1.9.0
+- New: hide categories without products for the selected vehicle in the main and mobile menu
+
 # 1.8.6
 - "Only vehicles with products" now checks the option/product assignment directly
 

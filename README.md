@@ -108,6 +108,7 @@ Die **Beschriftungs- und Darstellungs-Einstellungen** kannst du zusätzlich pro 
 | **CSS-Klasse der Fahrzeug-Beschreibung** | Zusätzliche Klasse für den Beschreibungs-Block, z. B. `nova-fitment` – dann erscheinen Tabellen (Passtabellen „welches Teil passt“) im Stil des Nova Themes. |
 | **Kategorie-Überschrift anzeigen** | Zeigt auf Kategorieseiten den Kategorienamen als Überschrift, bei gewähltem Fahrzeug ergänzt: „Federkugeln für Citroën XM“. Nur einschalten, wenn die Erlebniswelt keine eigene Überschrift hat. |
 | **Verbindungswort in der Überschrift** | Standard „für“. |
+| **Leere Kategorien im Menü ausblenden** | Bei gewähltem Fahrzeug zeigen Haupt- und mobiles Menü nur Kategorien, die für dieses Fahrzeug Produkte haben (auch mit dynamischen Produktgruppen). Inhaltsseiten ohne Produkte, Links und Ordner bleiben stehen. |
 | **Beschriftung der „Alle"-Kachel** | Freier Text, z. B. `Alle` oder `Zurücksetzen`. Leer = Standardtext. |
 
 Die sichtbaren Kacheltexte selbst sind die **Namen der Eigenschafts-Optionen** – die änderst du direkt in Shopware unter *Kataloge → Eigenschaften* (bzw. mehrsprachig je Übersetzung).

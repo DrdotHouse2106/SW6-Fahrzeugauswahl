@@ -1,3 +1,6 @@
+# 1.9.0
+- Neu: **Leere Kategorien im Menü ausblenden** – bei gewähltem Fahrzeug zeigen Hauptmenü und mobiles Menü nur Kategorien mit passenden Produkten (auch bei dynamischen Produktgruppen). Inhaltsseiten ohne Produkte, Links und Ordner bleiben stehen
+
 # 1.8.6
 - „Nur Fahrzeuge mit Produkten anzeigen“ prüft jetzt direkt die Zuordnung Fahrzeug ↔ Produkt (aktiv und im Verkaufskanal sichtbar) – die bisherige Auswertung fand trotz zugeordneter Produkte nichts
 
