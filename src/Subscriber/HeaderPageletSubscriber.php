@@ -2,6 +2,7 @@
 
 namespace Ulber\FahrzeugSchnellauswahl\Subscriber;
 
+use Shopware\Core\Framework\Struct\ArrayStruct;
 use Shopware\Storefront\Pagelet\Header\HeaderPageletLoadedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Ulber\FahrzeugSchnellauswahl\Service\VehicleOptionLoader;
@@ -34,12 +35,16 @@ class HeaderPageletSubscriber implements EventSubscriberInterface
         $salesChannelId = $event->getSalesChannelContext()->getSalesChannelId();
 
         if (!$this->config->isActive($salesChannelId)) {
+            $this->status($event, 'nicht aktiv – Verkaufskanal fehlt in „In diesen Verkaufskanälen aktiv“');
+
             return;
         }
 
         $groupIds = $this->config->getPropertyGroupIds($salesChannelId);
 
         if ($groupIds === []) {
+            $this->status($event, 'keine Filtergruppe (Eigenschaft) für diesen Verkaufskanal eingestellt');
+
             return;
         }
 
@@ -53,6 +58,8 @@ class HeaderPageletSubscriber implements EventSubscriberInterface
         );
 
         if ($options->count() === 0) {
+            $this->status($event, 'keine anzeigbaren Ausprägungen (Gruppe leer, alle ausgeblendet oder ohne sichtbare Produkte im Verkaufskanal)');
+
             return;
         }
 
@@ -98,6 +105,8 @@ class HeaderPageletSubscriber implements EventSubscriberInterface
             $activeOptionName = $activeOption->getTranslation('name') ?? $activeOption->getName();
         }
 
+        $this->status($event, 'aktiv, ' . $options->count() . ' Fahrzeuge');
+
         $event->getPagelet()->addExtension(
             'vehicleSwitcher',
             new VehicleSwitcherStruct(
@@ -117,5 +126,13 @@ class HeaderPageletSubscriber implements EventSubscriberInterface
                 $this->config->getDescriptionCssClass($salesChannelId)
             )
         );
+    }
+
+    /**
+     * Status als HTML-Kommentar im Header – zeigt ohne Admin-Zugang, warum keine Kachel-Leiste erscheint.
+     */
+    private function status(HeaderPageletLoadedEvent $event, string $text): void
+    {
+        $event->getPagelet()->addExtension('vehicleSwitcherStatus', new ArrayStruct(['text' => $text]));
     }
 }

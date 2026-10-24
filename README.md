@@ -140,6 +140,12 @@ automatisch als Kacheln.
 
 ## Häufige Probleme und Lösungen
 
+### Kachel-Leiste erscheint nicht – Ursache finden
+
+**Ursache:** Freischaltung, Filtergruppe oder Ausprägungen passen nicht
+
+**Lösung:** Seitenquelltext öffnen (Strg+U) und nach „Nova Fahrzeugauswahl:“ suchen – der Kommentar nennt den Grund (ab 1.8.3)
+
 ### Kachel-Leiste erscheint nicht, obwohl der Verkaufskanal freigeschaltet ist
 
 **Ursache:** Beim Verkaufskanal wurde das Feld „In diesen Verkaufskanälen aktiv“ von der Vererbung getrennt und leer gespeichert – bis 1.8.1 hob das die Freischaltung bei „Alle Verkaufskanäle“ auf

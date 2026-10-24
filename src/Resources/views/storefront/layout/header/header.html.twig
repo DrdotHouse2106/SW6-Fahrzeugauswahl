@@ -9,6 +9,8 @@
     {{ parent() }}
 
     {% set vehicleSwitcher = header.extensions.vehicleSwitcher ?? null %}
+    {% set vehicleSwitcherStatus = header.extensions.vehicleSwitcherStatus ?? null %}
+    {% if vehicleSwitcherStatus %}<!-- Nova Fahrzeugauswahl: {{ vehicleSwitcherStatus.get('text') }} -->{% endif %}
 
     {% if vehicleSwitcher and vehicleSwitcher.options.count > 0 %}
         {% sw_include '@Storefront/storefront/component/vehicle-switcher/vehicle-switcher.html.twig' with {

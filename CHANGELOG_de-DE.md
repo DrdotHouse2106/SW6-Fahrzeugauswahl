@@ -1,3 +1,6 @@
+# 1.8.3
+- Neu: Status als HTML-Kommentar im Header („Nova Fahrzeugauswahl: aktiv, 15 Fahrzeuge“ bzw. der Grund, warum keine Kachel-Leiste erscheint) – im Seitenquelltext sichtbar, für Kunden unsichtbar
+
 # 1.8.2
 - Fehler behoben: Die Kachel-Leiste fehlte, wenn beim Verkaufskanal das Feld „In diesen Verkaufskanälen aktiv“ von der Vererbung getrennt (z. B. leer) gespeichert war. Maßgeblich ist jetzt immer auch die Liste bei „Alle Verkaufskanäle“
 

@@ -1,3 +1,6 @@
+# 1.8.3
+- New: status HTML comment in the header explaining why the switcher is (not) shown
+
 # 1.8.2
 - Fixed: switcher missing when "active sales channels" was decoupled (e.g. empty) on the sales channel level; the global list always counts
 
