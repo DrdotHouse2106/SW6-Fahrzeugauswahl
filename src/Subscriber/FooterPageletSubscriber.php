@@ -76,6 +76,7 @@ class FooterPageletSubscriber implements EventSubscriberInterface
         $event->getPagelet()->addExtension('vehicleSwitcherDescription', new ArrayStruct([
             'html' => $description,
             'listingOnly' => $this->config->descriptionListingOnly($salesChannelId),
+            'cssClass' => $this->config->getDescriptionCssClass($salesChannelId),
         ]));
     }
 }

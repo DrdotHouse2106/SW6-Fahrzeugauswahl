@@ -95,6 +95,11 @@ The **labelling and appearance settings** can additionally be overridden per sal
 
 The pill captions themselves are the **names of the property options** – edit them directly in Shopware under *Catalogues → Properties* (per translation for multiple languages).
 
+### Category heading and description styling (1.8.0)
+
+- **Show category heading**: shows the category name as heading on category pages, extended by the selected vehicle ("Spheres for Citroën XM"). Joining word configurable (default German "für").
+- **Description CSS class**: extra class for the vehicle description block, e.g. `nova-fitment` for Nova Theme fitment tables.
+
 ## Filling the properties
 
 The plugin only reads `property_group` / `property_group_option` and the

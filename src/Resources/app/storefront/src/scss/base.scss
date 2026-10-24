@@ -182,3 +182,16 @@ $vs-pill-active-color: var(--vs-pill-active-color, #ffffff) !default;
         }
     }
 }
+
+// Kategorie-Überschrift (optional, Plugin-Konfiguration „Kategorie-Überschrift“)
+.vehicle-switcher-heading {
+    margin-top: .25rem;
+    margin-bottom: 1rem;
+
+    &__title {
+        margin: 0;
+        font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+        line-height: 1.2;
+        text-wrap: balance;
+    }
+}

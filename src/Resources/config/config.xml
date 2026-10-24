@@ -152,6 +152,27 @@
         </input-field>
 
         <input-field type="text">
+            <name>descriptionCssClass</name>
+            <label>CSS-Klasse der Fahrzeug-Beschreibung</label>
+            <placeholder>nova-fitment</placeholder>
+            <helpText>Optional. Zusätzliche CSS-Klasse für den Beschreibungs-Block, z. B. „nova-fitment“, damit Tabellen im Stil des Nova Themes erscheinen. Mehrere Klassen mit Leerzeichen.</helpText>
+        </input-field>
+
+        <input-field type="bool">
+            <name>categoryHeading</name>
+            <label>Kategorie-Überschrift anzeigen</label>
+            <helpText>Zeigt auf Kategorieseiten den Kategorienamen als Überschrift – bei gewähltem Fahrzeug ergänzt, z. B. „Federkugeln für Citroën XM“. Nur einschalten, wenn die Erlebniswelt der Kategorie keine eigene Überschrift hat.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="text">
+            <name>categoryHeadingJoiner</name>
+            <label>Verbindungswort in der Überschrift</label>
+            <placeholder>für</placeholder>
+            <helpText>Wort zwischen Kategorie und Fahrzeug. Leer = „für“.</helpText>
+        </input-field>
+
+        <input-field type="text">
             <name>allOptionLabel</name>
             <label>Beschriftung der „Alle“-Kachel</label>
             <placeholder>Alle Fahrzeuge</placeholder>

@@ -26,8 +26,32 @@ class VehicleSwitcherStruct extends Struct
         protected string $layout = 'bar',
         protected array $displayLabels = [],
         protected ?string $activeDescription = null,
-        protected bool $descriptionListingOnly = true
+        protected bool $descriptionListingOnly = true,
+        protected ?string $activeOptionName = null,
+        protected bool $categoryHeading = false,
+        protected string $categoryHeadingJoiner = 'für',
+        protected string $descriptionCssClass = ''
     ) {
+    }
+
+    public function getActiveOptionName(): ?string
+    {
+        return $this->activeOptionName;
+    }
+
+    public function isCategoryHeading(): bool
+    {
+        return $this->categoryHeading;
+    }
+
+    public function getCategoryHeadingJoiner(): string
+    {
+        return $this->categoryHeadingJoiner;
+    }
+
+    public function getDescriptionCssClass(): string
+    {
+        return $this->descriptionCssClass;
     }
 
     public function getActiveDescription(): ?string

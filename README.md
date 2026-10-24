@@ -105,6 +105,9 @@ Die **Beschriftungs- und Darstellungs-Einstellungen** kannst du zusätzlich pro 
 | **Fahrzeug-Beschreibung anzeigen** | Zeigt einen HTML-Block mit der Spezifikation des aktiven Fahrzeugs (Hubraum, Baujahre, Modellvarianten …). Gepflegt wird der Text **pro Ausprägung** im Custom-Field *„Fahrzeug-Beschreibung"* (Kataloge → Eigenschaften → Ausprägung öffnen → Reiter *Zusatzfelder*) – oder per ERP-Sync auf das Feld `vehicle_switcher_description`. |
 | **Position der Fahrzeug-Beschreibung** | `Oben` (direkt unter der Kachel-Leiste) oder `Unten` (Seitenende über dem Footer – klassischer SEO-Text-Platz, stört die Produktliste nicht). |
 | **Nur auf Kategorie-/Suchseiten** | Empfohlen (Default an): der Text erscheint dann nicht auf jeder Produkt-/Inhaltsseite → weniger doppelter Boilerplate-Content. |
+| **CSS-Klasse der Fahrzeug-Beschreibung** | Zusätzliche Klasse für den Beschreibungs-Block, z. B. `nova-fitment` – dann erscheinen Tabellen (Passtabellen „welches Teil passt“) im Stil des Nova Themes. |
+| **Kategorie-Überschrift anzeigen** | Zeigt auf Kategorieseiten den Kategorienamen als Überschrift, bei gewähltem Fahrzeug ergänzt: „Federkugeln für Citroën XM“. Nur einschalten, wenn die Erlebniswelt keine eigene Überschrift hat. |
+| **Verbindungswort in der Überschrift** | Standard „für“. |
 | **Beschriftung der „Alle"-Kachel** | Freier Text, z. B. `Alle` oder `Zurücksetzen`. Leer = Standardtext. |
 
 Die sichtbaren Kacheltexte selbst sind die **Namen der Eigenschafts-Optionen** – die änderst du direkt in Shopware unter *Kataloge → Eigenschaften* (bzw. mehrsprachig je Übersetzung).

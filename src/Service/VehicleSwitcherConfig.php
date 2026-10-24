@@ -143,6 +143,39 @@ class VehicleSwitcherConfig
     }
 
     /**
+     * Überschrift auf Kategorieseiten: Kategoriename, bei aktivem Fahrzeug mit „für <Fahrzeug>“.
+     */
+    public function showCategoryHeading(?string $salesChannelId): bool
+    {
+        return (bool) $this->systemConfigService->get(self::PREFIX . 'categoryHeading', $salesChannelId);
+    }
+
+    public function getCategoryHeadingJoiner(?string $salesChannelId): string
+    {
+        return $this->trimToNull($this->systemConfigService->get(self::PREFIX . 'categoryHeadingJoiner', $salesChannelId)) ?? 'für';
+    }
+
+    /**
+     * Zusätzliche CSS-Klassen für den Beschreibungs-Block (z. B. „nova-fitment“ für Tabellen im Theme-Stil).
+     * Nur Buchstaben, Ziffern, Binde- und Unterstrich – alles andere wird verworfen.
+     */
+    public function getDescriptionCssClass(?string $salesChannelId): string
+    {
+        $value = $this->systemConfigService->get(self::PREFIX . 'descriptionCssClass', $salesChannelId);
+
+        if (!\is_string($value)) {
+            return '';
+        }
+
+        $classes = array_filter(
+            preg_split('/\s+/', trim($value)) ?: [],
+            static fn (string $c): bool => (bool) preg_match('/^[A-Za-z][A-Za-z0-9_-]*$/', $c)
+        );
+
+        return implode(' ', $classes);
+    }
+
+    /**
      * Optionale Überschrift je konfigurierter Gruppe.
      * Leerer Wert = keine Überschrift.
      *

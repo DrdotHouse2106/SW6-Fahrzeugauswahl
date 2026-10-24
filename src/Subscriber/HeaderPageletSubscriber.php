@@ -93,6 +93,11 @@ class HeaderPageletSubscriber implements EventSubscriberInterface
                 : null;
         }
 
+        $activeOptionName = null;
+        if ($activeId !== null && ($activeOption = $options->get($activeId)) !== null) {
+            $activeOptionName = $activeOption->getTranslation('name') ?? $activeOption->getName();
+        }
+
         $event->getPagelet()->addExtension(
             'vehicleSwitcher',
             new VehicleSwitcherStruct(
@@ -105,7 +110,11 @@ class HeaderPageletSubscriber implements EventSubscriberInterface
                 $this->config->getLayout($salesChannelId),
                 $displayLabels,
                 $activeDescription,
-                $this->config->descriptionListingOnly($salesChannelId)
+                $this->config->descriptionListingOnly($salesChannelId),
+                $activeOptionName,
+                $this->config->showCategoryHeading($salesChannelId),
+                $this->config->getCategoryHeadingJoiner($salesChannelId),
+                $this->config->getDescriptionCssClass($salesChannelId)
             )
         );
     }

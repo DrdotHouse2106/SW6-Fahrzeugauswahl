@@ -101,7 +101,7 @@
                 or vswRoute in ['frontend.navigation.page', 'frontend.search.page', 'frontend.home.page'] %}
 
             {% if activeDescription is not empty and vswDescAllowed %}
-                <div class="vehicle-switcher__description">
+                <div class="vehicle-switcher__description {{ descriptionCssClass|default('') }}">
                     {% block component_vehicle_switcher_description_inner %}
                         {{ activeDescription|sw_sanitize }}
                     {% endblock %}
