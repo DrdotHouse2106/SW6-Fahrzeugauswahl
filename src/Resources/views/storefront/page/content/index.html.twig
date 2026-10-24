@@ -7,16 +7,16 @@
 {% block cms_breadcrumb %}
     {{ parent() }}
 
-    {% set vsw = page.header.extensions.vehicleSwitcher ?? null %}
+    {% set vsw = page.extensions.vehicleSwitcherHeading ?? null %}
     {% set vswRoute = activeRoute|default(app.request.attributes.get('_route')) %}
     {% set vswCategory = page.category ?? null %}
 
-    {% if vsw and vsw.categoryHeading and vswRoute == 'frontend.navigation.page' and vswCategory %}
+    {% if vsw and vswRoute == 'frontend.navigation.page' and vswCategory %}
         {% block vehicle_switcher_category_heading %}
             <div class="container vehicle-switcher-heading">
                 <h1 class="vehicle-switcher-heading__title">
                     {{- vswCategory.translated.name|sw_sanitize -}}
-                    {%- if vsw.activeOptionName %} {{ vsw.categoryHeadingJoiner|sw_sanitize }} <span class="vehicle-switcher-heading__vehicle">{{ vsw.activeOptionName|sw_sanitize }}</span>{% endif -%}
+                    {%- if vsw.vehicle %} {{ vsw.joiner|sw_sanitize }} <span class="vehicle-switcher-heading__vehicle">{{ vsw.vehicle|sw_sanitize }}</span>{% endif -%}
                 </h1>
             </div>
         {% endblock %}

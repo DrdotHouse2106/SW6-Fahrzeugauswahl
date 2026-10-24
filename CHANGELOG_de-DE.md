@@ -1,3 +1,6 @@
+# 1.8.5
+- Kategorie-Überschrift „<Kategorie> für <Fahrzeug>“ erscheint jetzt: Die Daten hängen an der Kategorieseite statt am Header (der Header wird als eigene Unteranfrage gerendert)
+
 # 1.8.4
 - „Nur Fahrzeuge mit Produkten anzeigen“: Findet die Prüfung gar keine Zuordnung (meist veralteter Suchindex nach einer Massenbearbeitung), wird nichts mehr ausgeblendet – die Leiste verschwindet nicht komplett. Der Status-Kommentar weist darauf hin
 

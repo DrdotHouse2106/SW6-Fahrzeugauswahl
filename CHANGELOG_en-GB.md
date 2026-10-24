@@ -1,3 +1,6 @@
+# 1.8.5
+- Category heading now renders: data is attached to the navigation page instead of the header (rendered as a separate sub-request)
+
 # 1.8.4
 - "Only vehicles with products": if the check finds no assignment at all (usually an outdated index), nothing is hidden anymore
 
