@@ -1,3 +1,6 @@
+# 1.8.1
+- Fixed: theme compilation failed after 1.8.0 ("Incompatible units vw and rem")
+
 # 1.8.0
 - New: optional category heading including the selected vehicle (e.g. "Spheres for Citroën XM")
 - New: CSS class for the vehicle description block (e.g. `nova-fitment`)

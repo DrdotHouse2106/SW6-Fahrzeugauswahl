@@ -1,3 +1,6 @@
+# 1.8.1
+- Fehler behoben: Nach dem Update auf 1.8.0 ließ sich das Theme nicht kompilieren („Incompatible units vw and rem“) – die Schriftgröße der Kategorie-Überschrift wird jetzt unverändert an den Browser gegeben
+
 # 1.8.0
 - Neu: **Kategorie-Überschrift** (optional): Kategoriename als Überschrift, bei gewähltem Fahrzeug ergänzt – z. B. „Federkugeln für Citroën XM“. Verbindungswort einstellbar
 - Neu: **CSS-Klasse der Fahrzeug-Beschreibung** – z. B. `nova-fitment`, damit Passtabellen im Stil des Nova Themes erscheinen

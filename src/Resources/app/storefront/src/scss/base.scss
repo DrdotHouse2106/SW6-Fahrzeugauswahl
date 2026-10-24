@@ -190,7 +190,8 @@ $vs-pill-active-color: var(--vs-pill-active-color, #ffffff) !default;
 
     &__title {
         margin: 0;
-        font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);
+        // unquote: Shopwares SCSS-Compiler (scssphp) kann rem und vw nicht verrechnen
+        font-size: unquote('clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem)');
         line-height: 1.2;
         text-wrap: balance;
     }

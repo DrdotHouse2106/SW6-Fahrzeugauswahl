@@ -138,6 +138,14 @@ automatisch als Kacheln.
 - Damit die Kachel-Leiste unter einem **eigenen Theme** erscheint, muss dessen `theme.json`
   in `style` **und** `script` den Eintrag `@Plugins` enthalten.
 
+## Häufige Probleme und Lösungen
+
+### „Das Theme konnte für diese Shops nicht kompiliert werden“ nach dem Update auf 1.8.0
+
+**Ursache:** Shopwares SCSS-Compiler (scssphp) rechnet `clamp(1.5rem, 1.2rem + 1.2vw, …)` selbst aus und scheitert an den gemischten Einheiten rem und vw
+
+**Lösung:** Auf 1.8.1 aktualisieren und danach unter *Inhalte → Themes* speichern oder `bin/console theme:compile` ausführen. Die Schriftgröße wird jetzt mit `unquote()` unverändert an den Browser übergeben
+
 ## Unterstützen
 
 Wenn dir dieses Projekt weiterhilft, freue ich mich über eine kleine Spende:
