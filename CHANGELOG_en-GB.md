@@ -1,3 +1,6 @@
+# 1.10.0
+- New: "fits all vehicles" option – products with it are shown for every selected vehicle
+
 # 1.9.0
 - New: hide categories without products for the selected vehicle in the main and mobile menu
 

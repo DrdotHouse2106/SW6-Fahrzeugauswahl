@@ -5,7 +5,7 @@ namespace Ulber\FahrzeugSchnellauswahl\Subscriber;
 use Shopware\Core\Content\Product\Events\ProductListingCriteriaEvent;
 use Shopware\Core\Content\Product\Events\ProductSearchCriteriaEvent;
 use Shopware\Core\Content\Product\Events\ProductSuggestCriteriaEvent;
-use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsAnyFilter;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Ulber\FahrzeugSchnellauswahl\Service\VehicleSelectionStorage;
 use Ulber\FahrzeugSchnellauswahl\Service\VehicleSwitcherConfig;
@@ -48,7 +48,7 @@ class ProductListingSubscriber implements EventSubscriberInterface
         // Als "normaler" Filter (nicht Post-Filter): wirkt auf Ergebnis UND Aggregationen,
         // damit die Sidebar-Filter zur eingeschränkten Fahrzeug-Auswahl passen.
         $event->getCriteria()->addFilter(
-            new EqualsFilter('product.properties.id', $optionId)
+            new EqualsAnyFilter('product.properties.id', $this->config->getFilterOptionIds($optionId, $salesChannelId))
         );
     }
 }

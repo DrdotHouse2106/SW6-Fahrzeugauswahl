@@ -47,6 +47,6 @@ class NavigationTreeSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $this->categoryFilter->filterTree($tree, $optionId, $context);
+        $this->categoryFilter->filterTree($tree, $this->config->getFilterOptionIds($optionId, $salesChannelId), $context);
     }
 }

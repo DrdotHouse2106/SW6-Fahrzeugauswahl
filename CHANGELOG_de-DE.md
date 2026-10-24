@@ -1,3 +1,6 @@
+# 1.10.0
+- Neu: **Ausprägung „Passt zu allen Fahrzeugen“** – Artikel mit dieser Ausprägung (Öl, Werkzeug, Literatur, Universalteile) erscheinen bei jedem gewählten Fahrzeug, auch im Menü-Filter. Die Ausprägung bekommt keine Kachel
+
 # 1.9.0
 - Neu: **Leere Kategorien im Menü ausblenden** – bei gewähltem Fahrzeug zeigen Hauptmenü und mobiles Menü nur Kategorien mit passenden Produkten (auch bei dynamischen Produktgruppen). Inhaltsseiten ohne Produkte, Links und Ordner bleiben stehen
 

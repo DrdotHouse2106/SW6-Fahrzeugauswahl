@@ -52,6 +52,13 @@
             <helpText>Diese Ausprägungen erscheinen NICHT in der Leiste (z. B. weil noch nicht gepflegt). Der Filter selbst bleibt möglich, nur die Kachel fehlt.</helpText>
         </component>
 
+        <component name="sw-entity-multi-id-select">
+            <name>universalOptionIds</name>
+            <entity>property_group_option</entity>
+            <label>Ausprägung „Passt zu allen Fahrzeugen“</label>
+            <helpText>Z. B. eine Ausprägung „Alle Fahrzeuge“ in der Fahrzeug-Eigenschaft, zugeordnet an Öl, Werkzeug, Literatur und Universalteile. Diese Artikel erscheinen bei jedem gewählten Fahrzeug. Die Ausprägung selbst bekommt keine Kachel.</helpText>
+        </component>
+
         <input-field type="bool">
             <name>onlyWithProducts</name>
             <label>Nur Fahrzeuge mit Produkten anzeigen</label>

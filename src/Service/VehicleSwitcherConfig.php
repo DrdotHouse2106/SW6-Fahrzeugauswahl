@@ -70,10 +70,40 @@ class VehicleSwitcherConfig
         $value = $this->systemConfigService->get(self::PREFIX . 'hiddenOptionIds', $salesChannelId);
 
         if (!\is_array($value)) {
+            $value = [];
+        }
+
+        // Ausprägungen „Passt zu allen Fahrzeugen“ bekommen nie eine Kachel
+        return array_values(array_unique(array_merge(
+            array_filter($value, static fn ($id): bool => \is_string($id) && $id !== ''),
+            $this->getUniversalOptionIds($salesChannelId)
+        )));
+    }
+
+    /**
+     * Ausprägungen „Passt zu allen Fahrzeugen“: deren Artikel erscheinen bei jedem gewählten Fahrzeug.
+     *
+     * @return list<string>
+     */
+    public function getUniversalOptionIds(?string $salesChannelId): array
+    {
+        $value = $this->systemConfigService->get(self::PREFIX . 'universalOptionIds', $salesChannelId);
+
+        if (!\is_array($value)) {
             return [];
         }
 
         return array_values(array_filter($value, static fn ($id): bool => \is_string($id) && $id !== ''));
+    }
+
+    /**
+     * Gewähltes Fahrzeug plus „Passt zu allen Fahrzeugen“ – Grundlage für alle Fahrzeug-Filter.
+     *
+     * @return list<string>
+     */
+    public function getFilterOptionIds(string $optionId, ?string $salesChannelId): array
+    {
+        return array_values(array_unique([$optionId, ...$this->getUniversalOptionIds($salesChannelId)]));
     }
 
     public function onlyWithProducts(?string $salesChannelId): bool

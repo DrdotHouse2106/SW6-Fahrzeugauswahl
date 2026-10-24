@@ -108,6 +108,7 @@ Die **Beschriftungs- und Darstellungs-Einstellungen** kannst du zusätzlich pro 
 | **CSS-Klasse der Fahrzeug-Beschreibung** | Zusätzliche Klasse für den Beschreibungs-Block, z. B. `nova-fitment` – dann erscheinen Tabellen (Passtabellen „welches Teil passt“) im Stil des Nova Themes. |
 | **Kategorie-Überschrift anzeigen** | Zeigt auf Kategorieseiten den Kategorienamen als Überschrift, bei gewähltem Fahrzeug ergänzt: „Federkugeln für Citroën XM“. Nur einschalten, wenn die Erlebniswelt keine eigene Überschrift hat. |
 | **Verbindungswort in der Überschrift** | Standard „für“. |
+| **Ausprägung „Passt zu allen Fahrzeugen“** | Z. B. „Alle Fahrzeuge“ in der Fahrzeug-Eigenschaft anlegen und an Öl, Werkzeug, Literatur und Universalteile vergeben. Diese Artikel erscheinen bei jedem gewählten Fahrzeug; die Ausprägung bekommt keine Kachel. Artikel ganz ohne Fahrzeug-Ausprägung verschwinden bei gewähltem Fahrzeug. |
 | **Leere Kategorien im Menü ausblenden** | Bei gewähltem Fahrzeug zeigen Haupt- und mobiles Menü nur Kategorien, die für dieses Fahrzeug Produkte haben (auch mit dynamischen Produktgruppen). Inhaltsseiten ohne Produkte, Links und Ordner bleiben stehen. |
 | **Beschriftung der „Alle"-Kachel** | Freier Text, z. B. `Alle` oder `Zurücksetzen`. Leer = Standardtext. |
 
@@ -140,6 +141,12 @@ automatisch als Kacheln.
   in `style` **und** `script` den Eintrag `@Plugins` enthalten.
 
 ## Häufige Probleme und Lösungen
+
+### Öl, Werkzeug oder Literatur verschwinden, sobald ein Fahrzeug gewählt ist
+
+**Ursache:** Der Fahrzeugfilter zeigt nur Artikel mit der gewählten Ausprägung; Artikel ohne Fahrzeug-Zuordnung fallen heraus
+
+**Lösung:** Ausprägung „Alle Fahrzeuge“ anlegen, diesen Artikeln zuordnen und in der Konfiguration unter *Passt zu allen Fahrzeugen* auswählen (ab 1.10.0)
 
 ### Kategorie-Überschrift „… für Citroën XM“ erscheint nicht (bis 1.8.4)
 

@@ -8,6 +8,7 @@ use Shopware\Core\Content\Category\Tree\Tree;
 use Shopware\Core\Content\Category\Tree\TreeItem;
 use Shopware\Core\Content\ProductStream\Service\AbstractProductStreamBuilder;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsAnyFilter;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Shopware\Core\System\SalesChannel\Entity\SalesChannelRepository;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
@@ -29,9 +30,12 @@ class CategoryVehicleFilter
     ) {
     }
 
-    public function filterTree(Tree $tree, string $optionId, SalesChannelContext $context): void
+    /**
+     * @param list<string> $optionIds gewähltes Fahrzeug plus „Passt zu allen Fahrzeugen“
+     */
+    public function filterTree(Tree $tree, array $optionIds, SalesChannelContext $context): void
     {
-        $tree->setTree($this->filterItems($tree->getTree(), $optionId, $context));
+        $tree->setTree($this->filterItems($tree->getTree(), $optionIds, $context));
     }
 
     /**
@@ -39,15 +43,15 @@ class CategoryVehicleFilter
      *
      * @return array<TreeItem>
      */
-    private function filterItems(array $items, string $optionId, SalesChannelContext $context): array
+    private function filterItems(array $items, array $optionIds, SalesChannelContext $context): array
     {
         $kept = [];
 
         foreach ($items as $key => $item) {
             $hadChildren = $item->getChildren() !== [];
-            $item->setChildren($this->filterItems($item->getChildren(), $optionId, $context));
+            $item->setChildren($this->filterItems($item->getChildren(), $optionIds, $context));
 
-            if ($this->keep($item->getCategory(), $hadChildren, $item->getChildren() !== [], $optionId, $context)) {
+            if ($this->keep($item->getCategory(), $hadChildren, $item->getChildren() !== [], $optionIds, $context)) {
                 $kept[$key] = $item;
             }
         }
@@ -55,7 +59,7 @@ class CategoryVehicleFilter
         return $kept;
     }
 
-    private function keep(CategoryEntity $category, bool $hadChildren, bool $hasChildren, string $optionId, SalesChannelContext $context): bool
+    private function keep(CategoryEntity $category, bool $hadChildren, bool $hasChildren, array $optionIds, SalesChannelContext $context): bool
     {
         if ($hasChildren || $category->getType() === CategoryDefinition::TYPE_LINK) {
             return true;
@@ -71,12 +75,12 @@ class CategoryVehicleFilter
             return !$hadChildren;
         }
 
-        return $this->hasProducts($category, $optionId, $context);
+        return $this->hasProducts($category, $optionIds, $context);
     }
 
-    private function hasProducts(CategoryEntity $category, ?string $optionId, SalesChannelContext $context): bool
+    private function hasProducts(CategoryEntity $category, ?array $optionIds, SalesChannelContext $context): bool
     {
-        $key = $category->getId() . '-' . ($optionId ?? 'all');
+        $key = $category->getId() . '-' . ($optionIds === null ? 'all' : implode(',', $optionIds));
         if (isset($this->memo[$key])) {
             return $this->memo[$key];
         }
@@ -93,8 +97,8 @@ class CategoryVehicleFilter
             $criteria->addFilter(new EqualsFilter('product.categoriesRo.id', $category->getId()));
         }
 
-        if ($optionId !== null) {
-            $criteria->addFilter(new EqualsFilter('product.properties.id', $optionId));
+        if ($optionIds !== null) {
+            $criteria->addFilter(new EqualsAnyFilter('product.properties.id', $optionIds));
         }
 
         try {
