@@ -105,7 +105,10 @@ class HeaderPageletSubscriber implements EventSubscriberInterface
             $activeOptionName = $activeOption->getTranslation('name') ?? $activeOption->getName();
         }
 
-        $this->status($event, 'aktiv, ' . $options->count() . ' Fahrzeuge');
+        $this->status($event, 'aktiv, ' . $options->count() . ' Fahrzeuge'
+            . ($this->optionLoader->lastProductCheckWasEmpty()
+                ? ' (Prüfung „nur Fahrzeuge mit Produkten“ fand keine Zuordnung – Suchindex prüfen, nichts ausgeblendet)'
+                : ''));
 
         $event->getPagelet()->addExtension(
             'vehicleSwitcher',

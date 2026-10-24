@@ -21,6 +21,17 @@ use Shopware\Core\Framework\DataAbstractionLayer\Search\Sorting\FieldSorting;
  */
 class VehicleOptionLoader
 {
+    private bool $lastCheckEmpty = false;
+
+    /**
+     * true, wenn „Nur Fahrzeuge mit Produkten“ beim letzten Laden keinen einzigen Treffer fand
+     * (dann wurde nichts ausgeblendet).
+     */
+    public function lastProductCheckWasEmpty(): bool
+    {
+        return $this->lastCheckEmpty;
+    }
+
     public function __construct(
         private readonly EntityRepository $propertyGroupOptionRepository,
         private readonly EntityRepository $productRepository
@@ -41,6 +52,8 @@ class VehicleOptionLoader
         ?string $productSalesChannelId,
         Context $context
     ): PropertyGroupOptionCollection {
+        $this->lastCheckEmpty = false;
+
         if ($groupIds === []) {
             return new PropertyGroupOptionCollection();
         }
@@ -91,9 +104,15 @@ class VehicleOptionLoader
                 $context
             );
 
-            $ordered = $ordered->filter(
-                static fn ($option): bool => \in_array($option->getId(), $usedIds, true)
-            );
+            // Findet die Prüfung gar nichts, ist eher der Suchindex veraltet (z. B. nach Massenbearbeitung,
+            // Warteschlange nicht abgearbeitet) als dass kein einziges Fahrzeug Produkte hat – dann nichts ausblenden.
+            if ($usedIds === []) {
+                $this->lastCheckEmpty = true;
+            } else {
+                $ordered = $ordered->filter(
+                    static fn ($option): bool => \in_array($option->getId(), $usedIds, true)
+                );
+            }
         }
 
         return $ordered;

@@ -1,3 +1,6 @@
+# 1.8.4
+- "Only vehicles with products": if the check finds no assignment at all (usually an outdated index), nothing is hidden anymore
+
 # 1.8.3
 - New: status HTML comment in the header explaining why the switcher is (not) shown
 

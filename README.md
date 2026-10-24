@@ -140,6 +140,12 @@ automatisch als Kacheln.
 
 ## Häufige Probleme und Lösungen
 
+### Kachel-Leiste fehlt nach einer Massenbearbeitung der Fahrzeug-Eigenschaft
+
+**Ursache:** Die Prüfung „Nur Fahrzeuge mit Produkten“ liest den Suchindex. Ist er nach einer Massenbearbeitung noch nicht aktualisiert (Warteschlange/Elasticsearch), findet sie keine Zuordnung
+
+**Lösung:** Ab 1.8.4 blendet das Plugin dann nichts aus. Index aktualisieren: *Einstellungen → System → Caches & Indizes → Indizes aktualisieren* (bzw. `bin/console dal:refresh:index`); prüfen, ob die Warteschlange abgearbeitet wird
+
 ### Kachel-Leiste erscheint nicht – Ursache finden
 
 **Ursache:** Freischaltung, Filtergruppe oder Ausprägungen passen nicht
