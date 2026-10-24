@@ -140,6 +140,12 @@ automatisch als Kacheln.
 
 ## Häufige Probleme und Lösungen
 
+### Kachel-Leiste erscheint nicht, obwohl der Verkaufskanal freigeschaltet ist
+
+**Ursache:** Beim Verkaufskanal wurde das Feld „In diesen Verkaufskanälen aktiv“ von der Vererbung getrennt und leer gespeichert – bis 1.8.1 hob das die Freischaltung bei „Alle Verkaufskanäle“ auf
+
+**Lösung:** Auf 1.8.2 aktualisieren. Das Feld nur bei „Alle Verkaufskanäle“ pflegen; beim einzelnen Kanal die Vererbung bestehen lassen
+
 ### „Das Theme konnte für diese Shops nicht kompiliert werden“ nach dem Update auf 1.8.0
 
 **Ursache:** Shopwares SCSS-Compiler (scssphp) rechnet `clamp(1.5rem, 1.2rem + 1.2vw, …)` selbst aus und scheitert an den gemischten Einheiten rem und vw

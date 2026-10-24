@@ -1,3 +1,6 @@
+# 1.8.2
+- Fehler behoben: Die Kachel-Leiste fehlte, wenn beim Verkaufskanal das Feld „In diesen Verkaufskanälen aktiv“ von der Vererbung getrennt (z. B. leer) gespeichert war. Maßgeblich ist jetzt immer auch die Liste bei „Alle Verkaufskanäle“
+
 # 1.8.1
 - Fehler behoben: Nach dem Update auf 1.8.0 ließ sich das Theme nicht kompilieren („Incompatible units vw and rem“) – die Schriftgröße der Kategorie-Überschrift wird jetzt unverändert an den Browser gegeben
 

@@ -28,9 +28,16 @@ class VehicleSwitcherConfig
             return false;
         }
 
-        $ids = $this->systemConfigService->get(self::PREFIX . 'activeSalesChannels', $salesChannelId);
+        // Die Liste wird bei „Alle Verkaufskanäle“ gepflegt. Wurde das Feld beim Kanal von der Vererbung
+        // getrennt (z. B. leer gespeichert), darf das die globale Freischaltung nicht aufheben.
+        foreach ([null, $salesChannelId] as $scope) {
+            $ids = $this->systemConfigService->get(self::PREFIX . 'activeSalesChannels', $scope);
+            if (\is_array($ids) && \in_array($salesChannelId, $ids, true)) {
+                return true;
+            }
+        }
 
-        return \is_array($ids) && \in_array($salesChannelId, $ids, true);
+        return false;
     }
 
     /**
