@@ -1,3 +1,6 @@
+# 1.8.6
+- „Nur Fahrzeuge mit Produkten anzeigen“ prüft jetzt direkt die Zuordnung Fahrzeug ↔ Produkt (aktiv und im Verkaufskanal sichtbar) – die bisherige Auswertung fand trotz zugeordneter Produkte nichts
+
 # 1.8.5
 - Kategorie-Überschrift „<Kategorie> für <Fahrzeug>“ erscheint jetzt: Die Daten hängen an der Kategorieseite statt am Header (der Header wird als eigene Unteranfrage gerendert)
 

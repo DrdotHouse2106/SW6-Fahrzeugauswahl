@@ -1,3 +1,6 @@
+# 1.8.6
+- "Only vehicles with products" now checks the option/product assignment directly
+
 # 1.8.5
 - Category heading now renders: data is attached to the navigation page instead of the header (rendered as a separate sub-request)
 

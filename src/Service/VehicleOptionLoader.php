@@ -2,16 +2,14 @@
 
 namespace Ulber\FahrzeugSchnellauswahl\Service;
 
-use Shopware\Core\Content\Product\SalesChannel\ProductAvailableFilter;
 use Shopware\Core\Content\Property\Aggregate\PropertyGroupOption\PropertyGroupOptionCollection;
 use Shopware\Core\Content\Property\Aggregate\PropertyGroupOption\PropertyGroupOptionEntity;
 use Ulber\FahrzeugSchnellauswahl\Migration\Migration1788960000CreateVehicleDescriptionField;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
-use Shopware\Core\Framework\DataAbstractionLayer\Search\Aggregation\Bucket\TermsAggregation;
-use Shopware\Core\Framework\DataAbstractionLayer\Search\AggregationResult\Bucket\TermsResult;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsAnyFilter;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Sorting\FieldSorting;
 
 /**
@@ -147,30 +145,19 @@ class VehicleOptionLoader
             return [];
         }
 
-        $criteria = new Criteria();
-        $criteria->setLimit(1);
+        // Über die Optionen selbst prüfen (Zuordnungstabelle product_property) statt über eine Aggregation
+        // auf Produkten: Die Terms-Aggregation lieferte bei vielen Eigenschaften keine Fahrzeug-Treffer.
+        $criteria = new Criteria($optionIds);
         $criteria->setTitle('vehicle-switcher::used-options');
-        $criteria->addFilter(new EqualsAnyFilter('properties.id', $optionIds));
-        $criteria->addFilter(new ProductAvailableFilter($salesChannelId));
-        $criteria->addAggregation(
-            new TermsAggregation('vsw-props', 'properties.id', \count($optionIds) + 50)
-        );
+        $criteria->addFilter(new EqualsFilter('productProperties.active', true));
+        $criteria->addFilter(new EqualsFilter('productProperties.visibilities.salesChannelId', $salesChannelId));
 
-        $aggregation = $this->productRepository->aggregate($criteria, $context)->get('vsw-props');
-
-        if (!$aggregation instanceof TermsResult) {
-            // Aggregation nicht verfügbar -> im Zweifel nichts ausblenden.
-            return $optionIds;
-        }
-
-        $present = [];
-        foreach ($aggregation->getBuckets() as $bucket) {
-            $present[$bucket->getKey()] = true;
-        }
+        /** @var list<string> $ids */
+        $ids = $this->propertyGroupOptionRepository->searchIds($criteria, $context)->getIds();
 
         return array_values(array_filter(
             $optionIds,
-            static fn (string $id): bool => isset($present[$id])
+            static fn (string $id): bool => \in_array($id, $ids, true)
         ));
     }
 }
